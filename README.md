@@ -172,15 +172,17 @@ SQLite database (`database.db`) stores:
 - The application runs locally using the Flask development server
 
 ## Screenshots
-
+### Home Page
 ![Home Page](screenshots/home1.png)
 ![Home Page](screenshots/home2.png)
 ![Home Page](screenshots/home3.png)
 
+### Recommendation Page
 ![Recommendations](screenshots/recommend1.png)
 ![Recommendations](screenshots/recommend2.png)
 ![Recommendations](screenshots/recommend3.png)
 
+### Dashboard
 ![Dashboard](screenshots/dashboard1.png)
 ![Dashboard](screenshots/dashboard2.png)
 ![Dashboard](screenshots/dashboard3.png)
