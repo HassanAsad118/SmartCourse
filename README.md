@@ -170,3 +170,18 @@ SQLite database (`database.db`) stores:
 - Make sure the spaCy model is installed before running the app
 - Run `train_models.py` once before starting the app to generate model files
 - The application runs locally using the Flask development server
+
+## Screenshots
+
+![Home Page](screenshots/home page 1.png)
+![Home Page](screenshots/home page 2.png)
+![Home Page](screenshots/home page 3.png)
+![Recommendations](screenshots/recommend page 1.png)
+![Recommendations](screenshots/recommend page 2.png)
+![Recommendations](screenshots/recommend page 3.png)
+![Recommendations](screenshots/recommend page 4.png)
+![Recommendations](screenshots/recommend page 5.png)
+![Dashboard](screenshots/dashboard page 1.png)
+![Dashboard](screenshots/dashboard page 2.png)
+![Dashboard](screenshots/dashboard page 3.png)
+![Dashboard](screenshots/dashboard page 4.png)
