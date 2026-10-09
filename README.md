@@ -173,15 +173,14 @@ SQLite database (`database.db`) stores:
 
 ## Screenshots
 
-![Home Page](screenshots/home page 1.png)
-![Home Page](screenshots/home page 2.png)
-![Home Page](screenshots/home page 3.png)
-![Recommendations](screenshots/recommend page 1.png)
-![Recommendations](screenshots/recommend page 2.png)
-![Recommendations](screenshots/recommend page 3.png)
-![Recommendations](screenshots/recommend page 4.png)
-![Recommendations](screenshots/recommend page 5.png)
-![Dashboard](screenshots/dashboard page 1.png)
-![Dashboard](screenshots/dashboard page 2.png)
-![Dashboard](screenshots/dashboard page 3.png)
-![Dashboard](screenshots/dashboard page 4.png)
+![Home Page](screenshots/home1.png)
+![Home Page](screenshots/home2.png)
+![Home Page](screenshots/home3.png)
+
+![Recommendations](screenshots/recommend1.png)
+![Recommendations](screenshots/recommend2.png)
+![Recommendations](screenshots/recommend3.png)
+
+![Dashboard](screenshots/dashboard1.png)
+![Dashboard](screenshots/dashboard2.png)
+![Dashboard](screenshots/dashboard3.png)
