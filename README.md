@@ -74,36 +74,36 @@ SmartCourse is a full-stack AI-based course recommendation system that suggests 
 
 ## Project Structure
 
-SmartCourse/
-│
-├── app.py
-├── config.py
-├── train_models.py
-├── requirements.txt
-│
-├── utils/
-│ ├── preprocessing.py
-│ ├── tfidf_model.py
-│ ├── neural_model.py
-│ └── evaluation.py
-│
-├── models/
-│ ├── tfidf_model.pkl
-│ └── neural_embeddings.pkl
-│
-├── templates/
-│ ├── base.html
-│ ├── home.html
-│ ├── recommend.html
-│ ├── dashboard.html
-│ └── about.html
-│
-├── static/
-│ ├── css/style.css
-│ └── js/main.js
-│
-└── data/
-└── Courses_dataset.csv
+    SmartCourse/
+    │
+    ├── app.py
+    ├── config.py
+    ├── train_models.py
+    ├── requirements.txt
+    │
+    ├── utils/
+    │   ├── preprocessing.py
+    │   ├── tfidf_model.py
+    │   ├── neural_model.py
+    │   └── evaluation.py
+    │
+    ├── models/
+    │   ├── tfidf_model.pkl
+    │   └── neural_embeddings.pkl
+    │
+    ├── templates/
+    │   ├── base.html
+    │   ├── home.html
+    │   ├── recommend.html
+    │   ├── dashboard.html
+    │   └── about.html
+    │
+    ├── static/
+    │   ├── css/style.css
+    │   └── js/main.js
+    │
+    └── data/
+        └── Courses_dataset.csv
 
 
 ---
