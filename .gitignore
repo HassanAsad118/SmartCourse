@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+models/tfidf_model.pkl
+models/neural_embeddings.pkl
+database.db
+.env
+*.db

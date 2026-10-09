@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ==================== PAGE HEADER ==================== -->
+<div class="row mb-5 align-items-end">
+    <div class="col">
+        <h2 class="display-6 fw-bold text-brand-deep mb-1">
+            Learning <span style="color: #134074;">Dashboard</span>
+        </h2>
+        <p class="text-muted mb-0">
+            View search history, saved courses, and side-by-side model comparisons.
+        </p>
+    </div>
+    <div class="col-auto">
+        <!-- ID must remain exactly "clearHistoryBtn" — used by main.js -->
+        <button id="clearHistoryBtn"
+                class="btn btn-outline-danger btn-sm rounded-pill px-3">
+            <i class="bi bi-trash"></i> Clear History
+        </button>
+    </div>
+</div>
+
+<!-- ==================== SECTION 1: SEARCH HISTORY ==================== -->
+<div class="card border-0 shadow-sm rounded-4 mb-5 bg-white">
+    <div class="card-header bg-white border-0 pt-4 px-4 pb-2">
+        <div class="d-flex align-items-center gap-2">
+            <span class="badge rounded-pill px-3 py-2"
+                  style="background-color: #eef4ed; color: #134074;
+                         border: 1px solid #8da9c4; font-size: 0.75rem;">
+                Section 1
+            </span>
+            <h5 class="fw-bold text-brand-deep mb-0">Search History</h5>
+        </div>
+        <p class="text-muted mt-1 mb-0" style="font-size: 0.85rem;">
+            Every query submitted to the recommendation engine is logged here
+            with its model type and timestamp. Use
+            <strong>Compare AI</strong> to run a side-by-side comparison
+            for any past query.
+        </p>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <!--
+                ID: historyTable — required by main.js loadHistory()
+                tbody is populated dynamically by JavaScript
+            -->
+            <table class="table table-hover align-middle mb-0"
+                   id="historyTable">
+                <thead style="background-color: #f8fafc;">
+                    <tr class="text-muted small text-uppercase"
+                        style="letter-spacing: 0.5px;">
+                        <th class="ps-4 py-3">Query</th>
+                        <th class="py-3">Model</th>
+                        <th class="py-3">Date</th>
+                        <th class="pe-4 py-3 text-end">Action</th>
+                    </tr>
+                </thead>
+                <!-- Populated by main.js loadHistory() -->
+                <tbody class="border-top-0"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== SECTION 2: MODEL COMPARISON ==================== -->
+<div class="card border-0 shadow-sm rounded-4 mb-5 bg-white">
+    <div class="card-header bg-white border-0 pt-4 px-4 pb-2">
+        <div class="d-flex align-items-center gap-2">
+            <span class="badge rounded-pill px-3 py-2"
+                  style="background-color: #eef4ed; color: #134074;
+                         border: 1px solid #8da9c4; font-size: 0.75rem;">
+                Section 2
+            </span>
+            <h5 class="fw-bold text-brand-deep mb-0">Model Comparison Panel</h5>
+        </div>
+        <p class="text-muted mt-1 mb-0" style="font-size: 0.85rem;">
+            Click <strong>Compare AI</strong> on any history row to load
+            TF-IDF and Neural results side by side for that query.
+            This demonstrates how each model interprets the same input differently.
+        </p>
+    </div>
+    <div class="card-body p-4">
+        <div class="row g-4">
+
+            <!-- TF-IDF Comparison Container -->
+            <div class="col-md-6">
+                <div class="rounded-4 p-4 h-100 border"
+                     style="border-color: rgba(141,169,196,0.3) !important;
+                            background-color: #fafbfc;">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge rounded-pill px-3 py-2"
+                              style="background-color: #134074;
+                                     color: white; font-size: 0.78rem;">
+                            TF-IDF Model
+                        </span>
+                        <small class="text-muted">Keyword-based matching</small>
+                    </div>
+                    <!--
+                        ID: compareTFIDF — required by main.js compare-btn handler
+                        Content injected dynamically by JavaScript
+                    -->
+                    <div id="compareTFIDF">
+                        <p class="text-muted text-center py-4"
+                           style="font-size: 0.85rem;">
+                            Select a query from history to load results.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Neural Comparison Container -->
+            <div class="col-md-6">
+                <div class="rounded-4 p-4 h-100 border"
+                     style="border-color: rgba(141,169,196,0.3) !important;
+                            background-color: #fafbfc;">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge rounded-pill px-3 py-2"
+                              style="background-color: #8da9c4;
+                                     color: white; font-size: 0.78rem;">
+                            Neural Model
+                        </span>
+                        <small class="text-muted">Semantic understanding</small>
+                    </div>
+                    <!--
+                        ID: compareNeural — required by main.js compare-btn handler
+                        Content injected dynamically by JavaScript
+                    -->
+                    <div id="compareNeural">
+                        <p class="text-muted text-center py-4"
+                           style="font-size: 0.85rem;">
+                            Select a query from history to load results.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ==================== SECTION 3: SAVED COURSES ==================== -->
+<div class="card border-0 shadow-sm rounded-4 mb-5 bg-white">
+    <div class="card-header bg-white border-0 pt-4 px-4 pb-2">
+        <div class="d-flex align-items-center gap-2">
+            <span class="badge rounded-pill px-3 py-2"
+                  style="background-color: #eef4ed; color: #134074;
+                         border: 1px solid #8da9c4; font-size: 0.75rem;">
+                Section 3
+            </span>
+            <h5 class="fw-bold text-brand-deep mb-0">Saved Courses</h5>
+        </div>
+        <p class="text-muted mt-1 mb-0" style="font-size: 0.85rem;">
+            Courses bookmarked from recommendation results are stored here.
+            Each entry records the originating query, model used, and
+            relevance score assigned at the time of saving.
+        </p>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <!--
+                ID: savedTable — required by main.js loadSaved()
+                tbody is populated dynamically by JavaScript
+            -->
+            <table class="table table-hover align-middle mb-0"
+                   id="savedTable">
+                <thead style="background-color: #f8fafc;">
+                    <tr class="text-muted small text-uppercase"
+                        style="letter-spacing: 0.5px;">
+                        <th class="ps-4 py-3">Query</th>
+                        <th class="py-3">Course Title</th>
+                        <th class="py-3 text-center">Department</th>
+                        <th class="py-3 text-center">Score</th>
+                        <th class="pe-4 py-3 text-end">Action</th>
+                    </tr>
+                </thead>
+                <!-- Populated by main.js loadSaved() -->
+                <tbody class="border-top-0"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

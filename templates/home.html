@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ==================== HERO SECTION ==================== -->
+<div class="row justify-content-center align-items-center py-5 mb-4">
+    <div class="col-lg-10 text-center">
+
+        <span class="badge rounded-pill px-3 py-2 mb-4 d-inline-block"
+              style="background-color: #eef4ed; color: #134074;
+                     border: 1px solid #8da9c4; font-size: 0.8rem;">
+            Final Year Project — AI / NLP
+        </span>
+
+        <h1 class="display-3 fw-bold mb-3 text-brand-deep" style="letter-spacing: -1px;">
+            SmartCourse
+            <span style="color: #134074;">AI Recommendation System</span>
+        </h1>
+
+        <p class="lead mb-3 fw-semibold" style="color: #134074; font-size: 1.1rem;">
+            AI-powered course recommendation using TF-IDF and Neural Networks
+        </p>
+
+        <p class="text-muted mx-auto mb-5"
+           style="max-width: 700px; line-height: 1.8; font-size: 0.97rem;">
+            SmartCourse accepts natural language queries and recommends relevant
+            online courses using two independent NLP models. Users can compare
+            keyword-based TF-IDF retrieval against semantic neural embeddings
+            side by side to understand how each model interprets their intent.
+        </p>
+
+        <div class="d-grid d-sm-flex justify-content-center gap-3">
+            <a href="{{ url_for('recommend_page') }}"
+               class="btn btn-brand btn-lg shadow-brand px-5 py-3 fw-bold rounded-3">
+                Start Recommendation
+            </a>
+            <a href="{{ url_for('about') }}"
+               class="btn btn-lg px-5 py-3 fw-bold rounded-3"
+               style="border: 2px solid #8da9c4; color: #134074;">
+                Technical Documentation
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<!-- ==================== FEATURE CARDS ==================== -->
+<div class="row justify-content-center mb-5">
+    <div class="col-lg-11">
+
+        <div class="text-center mb-4">
+            <h5 class="fw-bold text-uppercase text-brand-deep"
+                style="letter-spacing: 2px; font-size: 0.82rem; color: #8da9c4 !important;">
+                System Capabilities
+            </h5>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Card 1: TF-IDF -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm rounded-4 bg-white card-hover">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <span class="badge rounded-pill px-3 py-2"
+                                  style="background-color: #eef4ed;
+                                         color: #134074;
+                                         border: 1px solid #8da9c4;
+                                         font-size: 0.75rem;">
+                                Model 1
+                            </span>
+                        </div>
+                        <h5 class="fw-bold text-brand-deep mb-2">TF-IDF Model</h5>
+                        <p class="text-muted mb-0"
+                           style="font-size: 0.88rem; line-height: 1.7;">
+                            Keyword-based retrieval using TF-IDF vectorization with
+                            unigram and bigram features. Effective for direct,
+                            specific queries where exact terminology matters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Neural -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm rounded-4 card-hover text-white"
+                     style="background-color: #134074;">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <span class="badge rounded-pill px-3 py-2"
+                                  style="background-color: rgba(255,255,255,0.15);
+                                         font-size: 0.75rem;">
+                                Model 2
+                            </span>
+                        </div>
+                        <h5 class="fw-bold mb-2">Neural Model</h5>
+                        <p class="mb-0"
+                           style="color: #c8d8e8; font-size: 0.88rem; line-height: 1.7;">
+                            Semantic understanding via
+                            <code style="color:#8da9c4;">all-MiniLM-L6-v2</code>
+                            Sentence Transformers. Matches courses by meaning, not
+                            just keywords, handling broad or conceptual queries.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Side-by-side comparison -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm rounded-4 bg-white card-hover">
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <span class="badge rounded-pill px-3 py-2"
+                                  style="background-color: #eef4ed;
+                                         color: #134074;
+                                         border: 1px solid #8da9c4;
+                                         font-size: 0.75rem;">
+                                Feature
+                            </span>
+                        </div>
+                        <h5 class="fw-bold text-brand-deep mb-2">Model Comparison</h5>
+                        <p class="text-muted mb-0"
+                           style="font-size: 0.88rem; line-height: 1.7;">
+                            Run both models on the same query simultaneously and
+                            view TF-IDF and Neural results side by side to compare
+                            how each model interprets user intent.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Dashboard -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm rounded-4 card-hover"
+                     style="background-color: #0b2545;">
+                    <div class="card-body p-4 text-white">
+                        <div class="mb-3">
+                            <span class="badge rounded-pill px-3 py-2"
+                                  style="background-color: rgba(255,255,255,0.12);
+                                         font-size: 0.75rem;">
+                                Feature
+                            </span>
+                        </div>
+                        <h5 class="fw-bold mb-2">Dashboard</h5>
+                        <p class="mb-0"
+                           style="color: #8da9c4; font-size: 0.88rem; line-height: 1.7;">
+                            View complete search history with timestamps, save
+                            preferred course recommendations, and revisit past
+                            queries with one-click model comparison.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ==================== PIPELINE SUMMARY ==================== -->
+<div class="row justify-content-center mb-5">
+    <div class="col-lg-11">
+        <div class="card border-0 shadow-sm rounded-4 bg-white">
+            <div class="card-body p-4 p-md-5">
+
+                <div class="text-center mb-4">
+                    <h5 class="fw-bold text-brand-deep mb-1">How It Works</h5>
+                    <p class="text-muted mb-0" style="font-size: 0.88rem;">
+                        From raw query to ranked course recommendations in four steps.
+                    </p>
+                </div>
+
+                <div class="row g-3 text-center">
+
+                    <div class="col-6 col-md-3">
+                        <div class="rounded-4 p-3 h-100"
+                             style="background-color: #eef4ed;">
+                            <div class="fw-bold mb-2"
+                                 style="color: #134074; font-size: 1.4rem;">1</div>
+                            <h6 class="fw-bold text-brand-deep mb-1"
+                                style="font-size: 0.85rem;">
+                                Enter Query
+                            </h6>
+                            <p class="text-muted mb-0" style="font-size: 0.78rem;">
+                                Type your learning goal in natural language
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class="rounded-4 p-3 h-100"
+                             style="background-color: #eef4ed;">
+                            <div class="fw-bold mb-2"
+                                 style="color: #134074; font-size: 1.4rem;">2</div>
+                            <h6 class="fw-bold text-brand-deep mb-1"
+                                style="font-size: 0.85rem;">
+                                NLP Preprocessing
+                            </h6>
+                            <p class="text-muted mb-0" style="font-size: 0.78rem;">
+                                Query is cleaned, lemmatized, and normalized
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class="rounded-4 p-3 h-100"
+                             style="background-color: #eef4ed;">
+                            <div class="fw-bold mb-2"
+                                 style="color: #134074; font-size: 1.4rem;">3</div>
+                            <h6 class="fw-bold text-brand-deep mb-1"
+                                style="font-size: 0.85rem;">
+                                Model Inference
+                            </h6>
+                            <p class="text-muted mb-0" style="font-size: 0.78rem;">
+                                TF-IDF or Neural model computes similarity scores
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <div class="rounded-4 p-3 h-100"
+                             style="background-color: #eef4ed;">
+                            <div class="fw-bold mb-2"
+                                 style="color: #134074; font-size: 1.4rem;">4</div>
+                            <h6 class="fw-bold text-brand-deep mb-1"
+                                style="font-size: 0.85rem;">
+                                Ranked Results
+                            </h6>
+                            <p class="text-muted mb-0" style="font-size: 0.78rem;">
+                                Top 10 courses returned with relevance scores
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('recommend_page') }}"
+                       class="btn btn-brand rounded-pill px-5 py-2 fw-bold shadow-brand">
+                        Start Recommendation
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

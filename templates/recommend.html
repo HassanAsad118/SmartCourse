@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center mb-5 sticky-top pt-3" style="top: 20px; z-index: 1020;">
+    <div class="col-lg-11">
+        <div class="p-3 bg-white rounded-pill shadow-lg border-0 d-flex align-items-center px-4" 
+             style="border: 1px solid rgba(141, 169, 196, 0.3) !important; backdrop-filter: blur(10px);">
+            
+            <div class="me-3 d-none d-md-block">
+                <span class="fs-4">
+                    <img src="static\images\search_icon.png" alt="search_icon" width="40px">
+                </span>
+            </div>
+
+            <div class="flex-grow-1">
+                <input type="text" class="form-control form-control-lg border-0 bg-transparent shadow-none" 
+                       id="query" placeholder="Tell the AI what you want to learn..."
+                       style="font-size: 1.1rem; color: #0b2545;">
+            </div>
+
+            <div class="px-3 border-start border-2 d-none d-lg-block" style="border-color: #eef4ed !important;">
+                <select class="form-select border-0 bg-transparent fw-semibold text-brand-deep shadow-none" id="model">
+                    <option value="tfidf">Keyword (TF-IDF)</option>
+                    <option value="neural" selected>Neural (AI)</option>
+                    <option value="both">Both (TF-IDF + Neural)</option>
+                </select>
+            </div>
+
+            <div class="ms-2">
+                <button class="btn btn-brand rounded-pill px-4 py-2 fw-bold shadow-brand" id="recommendBtn">
+                    Find Courses
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h5 class="text-uppercase ls-wide fw-bold" style="color: #8da9c4; letter-spacing: 2px;">Tailored Curriculum</h5>
+        </div>
+    </div>
+
+    <div id="results" class="row g-4 justify-content-center">
+        <div class="col-12 text-center py-5">
+            <div class="opacity-50">
+                <p class="fs-5">The AI is waiting for your input...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

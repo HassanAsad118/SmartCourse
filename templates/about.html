@@ -1,0 +1,429 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center py-4">
+    <div class="col-lg-11 col-xl-10">
+
+        <!-- ==================== PAGE HEADER ==================== -->
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-brand-deep mb-2">
+                About <span style="color: #134074;">SmartCourse</span>
+            </h2>
+            <p class="text-muted mx-auto" style="max-width: 680px; font-size: 0.95rem;">
+                Technical documentation for examiners and reviewers.
+                This page describes the system architecture, dataset, NLP pipeline,
+                models, and evaluation methodology.
+            </p>
+        </div>
+
+        <!-- ==================== A: PROJECT OVERVIEW ==================== -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="badge rounded-pill px-3 py-2"
+                          style="background-color: #0b2545; color: #eef4ed; font-size: 0.75rem;">
+                        A
+                    </span>
+                    <h4 class="fw-bold text-brand-deep mb-0">Project Overview</h4>
+                </div>
+                <p class="text-muted mb-3" style="line-height: 1.8;">
+                    SmartCourse is an AI-powered course recommendation system designed to help learners
+                    discover relevant online courses based on natural language queries. The system
+                    addresses the challenge of information overload in e-learning platforms, where
+                    thousands of courses make manual discovery inefficient.
+                </p>
+                <p class="text-muted mb-0" style="line-height: 1.8;">
+                    Instead of relying on simple keyword search, SmartCourse applies two distinct
+                    NLP-based recommendation models — a classical TF-IDF retrieval model and a
+                    neural sentence embedding model — allowing users to compare results and understand
+                    the strengths of each approach for different query types.
+                </p>
+            </div>
+        </div>
+
+        <!-- ==================== B: SYSTEM ARCHITECTURE ==================== -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <span class="badge rounded-pill px-3 py-2"
+                          style="background-color: #0b2545; color: #eef4ed; font-size: 0.75rem;">
+                        B
+                    </span>
+                    <h4 class="fw-bold text-brand-deep mb-0">System Architecture</h4>
+                </div>
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="rounded-4 p-3 h-100" style="background-color: #f8f9fa;">
+                            <h6 class="fw-bold text-brand-deep mb-2">
+                                <i class="bi bi-window me-2"></i>Frontend
+                            </h6>
+                            <p class="text-muted mb-0" style="font-size: 0.88rem; line-height: 1.7;">
+                                Built with HTML5, Bootstrap 5, and vanilla JavaScript (Fetch API).
+                                The interface provides a multi-page layout including a recommendation
+                                page, user dashboard, and this documentation page. All API
+                                communication is handled asynchronously without page reloads.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="rounded-4 p-3 h-100" style="background-color: #f8f9fa;">
+                            <h6 class="fw-bold text-brand-deep mb-2">
+                                <i class="bi bi-server me-2"></i>Backend — Flask API
+                            </h6>
+                            <p class="text-muted mb-0" style="font-size: 0.88rem; line-height: 1.7;">
+                                Python Flask serves a RESTful API with endpoints for recommendations
+                                (<code>/api/recommend</code>), search history (<code>/api/history</code>),
+                                and saved courses (<code>/api/save</code>, <code>/api/saved</code>).
+                                The backend routes queries to the selected model and returns
+                                structured JSON responses.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="rounded-4 p-3 h-100" style="background-color: #f8f9fa;">
+                            <h6 class="fw-bold text-brand-deep mb-2">
+                                <i class="bi bi-cpu me-2"></i>ML Models
+                            </h6>
+                            <p class="text-muted mb-0" style="font-size: 0.88rem; line-height: 1.7;">
+                                Two independent models handle recommendations. The TF-IDF model
+                                uses scikit-learn vectorization with cosine similarity for
+                                keyword-based retrieval. The Neural model uses the
+                                <code>all-MiniLM-L6-v2</code> Sentence Transformer to generate
+                                dense embeddings and perform semantic similarity matching.
+                                Both models are pre-trained and stored as serialized files for
+                                fast inference.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="rounded-4 p-3 h-100" style="background-color: #f8f9fa;">
+                            <h6 class="fw-bold text-brand-deep mb-2">
+                                <i class="bi bi-database me-2"></i>Database — SQLite
+                            </h6>
+                            <p class="text-muted mb-0" style="font-size: 0.88rem; line-height: 1.7;">
+                                SQLite stores user interaction data across two tables.
+                                The <strong>history</strong> table records every query with its
+                                model type and timestamp. The <strong>saved</strong> table stores
+                                courses that users explicitly bookmark, enabling the dashboard
+                                to display a personalised history and comparison view.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== C: DATASET INFORMATION ==================== -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="badge rounded-pill px-3 py-2"
+                          style="background-color: #0b2545; color: #eef4ed; font-size: 0.75rem;">
+                        C
+                    </span>
+                    <h4 class="fw-bold text-brand-deep mb-0">Dataset Information</h4>
+                </div>
+                <p class="text-muted mb-4" style="line-height: 1.8;">
+                    The system is trained on a dataset of approximately <strong>3,600+ cleaned courses</strong>
+                    sourced from the Udemy platform. Raw data contained 3,683 entries; after removing
+                    duplicates and rows with missing critical fields, 3,671 courses were retained for
+                    model training.
+                </p>
+                <div class="row g-3">
+                    <div class="col-6 col-md-3 text-center">
+                        <div class="rounded-4 py-3 px-2" style="background-color: #eef4ed;">
+                            <h5 class="fw-bold mb-0" style="color: #134074;">3,671</h5>
+                            <small class="text-muted">Cleaned Courses</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 text-center">
+                        <div class="rounded-4 py-3 px-2" style="background-color: #eef4ed;">
+                            <h5 class="fw-bold mb-0" style="color: #134074;">4</h5>
+                            <small class="text-muted">Departments</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 text-center">
+                        <div class="rounded-4 py-3 px-2" style="background-color: #eef4ed;">
+                            <h5 class="fw-bold mb-0" style="color: #134074;">3</h5>
+                            <small class="text-muted">Difficulty Levels</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 text-center">
+                        <div class="rounded-4 py-3 px-2" style="background-color: #eef4ed;">
+                            <h5 class="fw-bold mb-0" style="color: #134074;">Udemy</h5>
+                            <small class="text-muted">Data Source</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h6 class="fw-bold text-brand-deep mb-2">Dataset Fields</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        {% for field in [
+                            "course_name", "description", "department",
+                            "difficulty", "university", "course_id",
+                            "num_subscribers", "num_reviews", "price", "level"
+                        ] %}
+                        <span class="badge border fw-medium px-3 py-2 text-brand-deep"
+                              style="border-color: #8da9c4 !important; font-size: 0.78rem;">
+                            {{ field }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== D: NLP PIPELINE ==================== -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <span class="badge rounded-pill px-3 py-2"
+                          style="background-color: #0b2545; color: #eef4ed; font-size: 0.75rem;">
+                        D
+                    </span>
+                    <h4 class="fw-bold text-brand-deep mb-0">NLP Preprocessing Pipeline</h4>
+                </div>
+                <p class="text-muted mb-4" style="line-height: 1.8;">
+                    All course descriptions pass through a standardised preprocessing pipeline
+                    before being used for model training or query matching. The same pipeline
+                    is applied to both the dataset and user queries to ensure consistency.
+                </p>
+                <div class="row g-3">
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="d-flex gap-3 align-items-start p-3 rounded-4 h-100"
+                             style="background-color: #f8f9fa;">
+                            <span class="fw-bold rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                  style="width:32px; height:32px; background-color:#134074; color:white; font-size:0.8rem;">
+                                1
+                            </span>
+                            <div>
+                                <h6 class="fw-bold text-brand-deep mb-1">Text Cleaning</h6>
+                                <p class="text-muted mb-0" style="font-size: 0.85rem; line-height: 1.6;">
+                                    HTML tags, special characters, and punctuation are removed.
+                                    Text is converted to lowercase and whitespace is normalized.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="d-flex gap-3 align-items-start p-3 rounded-4 h-100"
+                             style="background-color: #f8f9fa;">
+                            <span class="fw-bold rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                  style="width:32px; height:32px; background-color:#134074; color:white; font-size:0.8rem;">
+                                2
+                            </span>
+                            <div>
+                                <h6 class="fw-bold text-brand-deep mb-1">Stopword Removal</h6>
+                                <p class="text-muted mb-0" style="font-size: 0.85rem; line-height: 1.6;">
+                                    Common English stopwords (e.g. "the", "is", "and") are removed
+                                    using spaCy's built-in stopword list to reduce noise.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="d-flex gap-3 align-items-start p-3 rounded-4 h-100"
+                             style="background-color: #f8f9fa;">
+                            <span class="fw-bold rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                  style="width:32px; height:32px; background-color:#134074; color:white; font-size:0.8rem;">
+                                3
+                            </span>
+                            <div>
+                                <h6 class="fw-bold text-brand-deep mb-1">Lemmatization</h6>
+                                <p class="text-muted mb-0" style="font-size: 0.85rem; line-height: 1.6;">
+                                    spaCy reduces each token to its base form — for example,
+                                    "running" becomes "run" — improving match consistency
+                                    across different word forms.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="d-flex gap-3 align-items-start p-3 rounded-4 h-100"
+                             style="background-color: #f8f9fa;">
+                            <span class="fw-bold rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                  style="width:32px; height:32px; background-color:#8da9c4; color:white; font-size:0.8rem;">
+                                4
+                            </span>
+                            <div>
+                                <h6 class="fw-bold text-brand-deep mb-1">TF-IDF Vectorization</h6>
+                                <p class="text-muted mb-0" style="font-size: 0.85rem; line-height: 1.6;">
+                                    Preprocessed text is converted into a sparse numerical matrix
+                                    using TF-IDF with unigram and bigram features
+                                    (<code>ngram_range=(1,2)</code>), capturing both single words
+                                    and two-word phrases.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="d-flex gap-3 align-items-start p-3 rounded-4 h-100"
+                             style="background-color: #f8f9fa;">
+                            <span class="fw-bold rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                  style="width:32px; height:32px; background-color:#8da9c4; color:white; font-size:0.8rem;">
+                                5
+                            </span>
+                            <div>
+                                <h6 class="fw-bold text-brand-deep mb-1">Sentence Embeddings</h6>
+                                <p class="text-muted mb-0" style="font-size: 0.85rem; line-height: 1.6;">
+                                    The <code>all-MiniLM-L6-v2</code> Sentence Transformer encodes
+                                    preprocessed descriptions into 384-dimensional dense vectors,
+                                    capturing semantic meaning beyond keyword overlap.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== E: MODEL COMPARISON ==================== -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <span class="badge rounded-pill px-3 py-2"
+                          style="background-color: #0b2545; color: #eef4ed; font-size: 0.75rem;">
+                        E
+                    </span>
+                    <h4 class="fw-bold text-brand-deep mb-0">Model Comparison</h4>
+                </div>
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 rounded-4 p-4"
+                             style="background-color: #eef4ed;">
+                            <div class="mb-3">
+                                <span class="badge rounded-pill px-3 py-2"
+                                      style="background-color: #134074; color: white; font-size: 0.78rem;">
+                                    TF-IDF Model
+                                </span>
+                            </div>
+                            <h6 class="fw-bold text-brand-deep mb-3">Keyword-Based Retrieval</h6>
+                            <ul class="text-muted ps-3 mb-0" style="font-size: 0.88rem; line-height: 1.9;">
+                                <li>Matches courses based on exact and near-exact keyword overlap</li>
+                                <li>Effective for specific, well-defined queries (e.g. "Excel pivot tables")</li>
+                                <li>Faster inference — operates on sparse vectors</li>
+                                <li>Less effective when query and course use different vocabulary for the same concept</li>
+                                <li>N-gram support (unigram + bigram) improves phrase-level matching</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 rounded-4 p-4 text-white"
+                             style="background-color: #134074;">
+                            <div class="mb-3">
+                                <span class="badge rounded-pill px-3 py-2"
+                                      style="background-color: rgba(255,255,255,0.15); font-size: 0.78rem;">
+                                    Neural Model
+                                </span>
+                            </div>
+                            <h6 class="fw-bold mb-3">Semantic Embedding Retrieval</h6>
+                            <ul class="ps-3 mb-0" style="color: #c8d8e8; font-size: 0.88rem; line-height: 1.9;">
+                                <li>Understands meaning and intent behind the query</li>
+                                <li>Matches semantically related courses even without shared keywords</li>
+                                <li>Better for broad or conceptual queries (e.g. "I want to get into tech")</li>
+                                <li>Slightly slower due to dense vector operations on 384-dimensional space</li>
+                                <li>Query expansion further improves semantic coverage</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== F: EVALUATION METRICS ==================== -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="badge rounded-pill px-3 py-2"
+                          style="background-color: #0b2545; color: #eef4ed; font-size: 0.75rem;">
+                        F
+                    </span>
+                    <h4 class="fw-bold text-brand-deep mb-0">Evaluation Metrics</h4>
+                </div>
+                <p class="text-muted mb-4" style="line-height: 1.8;">
+                    Both models are evaluated using standard information retrieval metrics
+                    across a set of 10 predefined test queries with keyword-based relevance
+                    judgements. Metrics are computed at <strong>k = 10</strong> (top 10 results).
+                </p>
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+                        <div class="rounded-4 p-4 h-100 text-center"
+                             style="background-color: #0b2545; color: #eef4ed;">
+                            <h5 class="fw-bold mb-2">Precision@10</h5>
+                            <p class="mb-0" style="color: #8da9c4; font-size: 0.88rem; line-height: 1.7;">
+                                The fraction of the top 10 returned courses that are relevant
+                                to the query. A score of 0.8 means 8 out of 10 results matched
+                                the expected topic.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="rounded-4 p-4 h-100 text-center"
+                             style="background-color: #134074; color: #eef4ed;">
+                            <h5 class="fw-bold mb-2">Recall@10</h5>
+                            <p class="mb-0" style="color: #8da9c4; font-size: 0.88rem; line-height: 1.7;">
+                                The fraction of all expected relevant keywords that appear
+                                across the top 10 results. Measures how broadly the model
+                                covers the topic area.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="rounded-4 p-4 h-100 text-center"
+                             style="background-color: #8da9c4; color: #0b2545;">
+                            <h5 class="fw-bold mb-2">Hit Rate@10</h5>
+                            <p class="mb-0" style="font-size: 0.88rem; line-height: 1.7;">
+                                A binary metric per query — 1.0 if at least one relevant
+                                course appears in the top 10, otherwise 0.0. Averaged across
+                                all test queries to give an overall discovery rate.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TECH STACK FOOTER ==================== -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-white">
+            <div class="card-body p-4 text-center">
+                <h6 class="fw-bold text-brand-deep mb-3 text-uppercase"
+                    style="letter-spacing: 1px; font-size: 0.8rem;">
+                    Technologies Used
+                </h6>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    {% for tech in [
+                        "Python 3.10", "Flask", "SQLite", "Bootstrap 5",
+                        "scikit-learn", "spaCy", "Sentence-Transformers",
+                        "Pandas", "Joblib", "JavaScript"
+                    ] %}
+                    <span class="badge border fw-medium px-3 py-2 text-brand-deep"
+                          style="border-color: #8da9c4 !important; font-size: 0.78rem;">
+                        {{ tech }}
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

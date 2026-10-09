@@ -1,0 +1,47 @@
+/* KEEPING YOUR EXISTING STRUCTURE */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+#results .card {
+    margin-bottom: 15px;
+}
+
+/* ADDING YOUR BRAND PALETTE AS UTILITIES */
+
+/* 1. Custom Button: Uses #134074 (Primary) and #13315c (Hover) */
+.btn-brand {
+    background-color: #134074 !important;
+    color: #eef4ed !important;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-brand:hover {
+    background-color: #13315c !important;
+    box-shadow: 0 4px 8px rgba(11, 37, 69, 0.2);
+    transform: translateY(-1px);
+}
+
+/* 2. Custom Card: Uses #8da9c4 (Steel Blue-Gray) for borders */
+.card-brand {
+    border: 1px solid #8da9c4 !important;
+    background-color: #ffffff;
+    border-radius: 12px !important;
+    overflow: hidden;
+}
+
+/* 3. Text & Background Utilities */
+.text-brand-deep { color: #0b2545 !important; }
+.text-brand-muted { color: #8da9c4 !important; }
+
+/* Modern shadow utility for your results */
+.shadow-brand {
+    box-shadow: 0 10px 15px -3px rgba(19, 64, 116, 0.1);
+}
